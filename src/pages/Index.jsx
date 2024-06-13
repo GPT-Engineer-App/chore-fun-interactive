@@ -42,17 +42,21 @@ const Index = () => {
       <VStack spacing={4} width="100%">
         <Text fontSize="3xl" fontWeight="bold" color="brand.900">Hello Kitty Chore List</Text>
         <HStack width="100%">
-          <Input
-            placeholder="Enter a new chore"
-            value={newChore}
-            onChange={(e) => setNewChore(e.target.value)}
-          />
-          <IconButton
-            aria-label="Add Chore"
-            icon={<FaHeart />} // Changed icon to FaHeart
-            colorScheme="brand.900"
-            onClick={addChore}
-          />
+          <Box bg="white" p={4} borderRadius="md" boxShadow="md" width="100%">
+            <HStack width="100%">
+              <Input
+                placeholder="Enter a new chore"
+                value={newChore}
+                onChange={(e) => setNewChore(e.target.value)}
+              />
+              <IconButton
+                aria-label="Add Chore"
+                icon={<FaHeart />} // Changed icon to FaHeart
+                colorScheme="brand.900"
+                onClick={addChore}
+              />
+            </HStack>
+          </Box>
         </HStack>
         <VStack spacing={3} width="100%">
           {chores.map((chore, index) => (
