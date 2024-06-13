@@ -38,59 +38,61 @@ const Index = () => {
 
   return (
     <Box bgImage="url('/images/hello-kitty-background.png')" bgSize="cover" bgPosition="center" minH="100vh">
-    <Container centerContent maxW="container.md" py={10}>
-      <VStack spacing={4} width="100%">
-        <Text fontSize="3xl" fontWeight="bold" color="brand.900">Hello Kitty Chore List</Text>
-        <HStack width="100%">
-          <Box bg="white" p={4} borderRadius="md" boxShadow="md" width="100%">
-            <HStack width="100%">
-              <Input
-                placeholder="Enter a new chore"
-                value={newChore}
-                onChange={(e) => setNewChore(e.target.value)}
-              />
-              <IconButton
-                aria-label="Add Chore"
-                icon={<FaHeart />} // Changed icon to FaHeart
-                colorScheme="brand.900"
-                onClick={addChore}
-              />
-            </HStack>
+      <Container centerContent maxW="container.md" py={10}>
+        <VStack spacing={4} width="100%">
+          <Box bg="brand.700" p={4} borderRadius="md" boxShadow="md" width="100%" textAlign="center">
+            <Text fontSize="3xl" fontWeight="bold" color="brand.900">Hello Kitty Chore List</Text>
           </Box>
-        </HStack>
-        <VStack spacing={3} width="100%">
-          {chores.map((chore, index) => (
-            <HStack key={index} width="100%" justifyContent="space-between" p={2} bg="brand.700" borderRadius="md">
-              <Checkbox isChecked={chore.completed} onChange={() => toggleComplete(index)}>
-                {editingIndex === index ? (
-                  <Input
-                    value={editingText}
-                    onChange={(e) => setEditingText(e.target.value)}
-                    onBlur={() => saveChore(index)}
-                  />
-                ) : (
-                  <Text as={chore.completed ? "s" : ""}>{chore.text}</Text>
-                )}
-              </Checkbox>
-              <HStack>
-                <IconButton
-                  aria-label="Edit Chore"
-                  icon={<FaEdit />}
-                  colorScheme="brand.800"
-                  onClick={() => editChore(index)}
+          <HStack width="100%">
+            <Box bg="white" p={4} borderRadius="md" boxShadow="md" width="100%">
+              <HStack width="100%">
+                <Input
+                  placeholder="Enter a new chore"
+                  value={newChore}
+                  onChange={(e) => setNewChore(e.target.value)}
                 />
                 <IconButton
-                  aria-label="Delete Chore"
-                  icon={<FaTrash />}
-                  colorScheme="brand.500"
-                  onClick={() => deleteChore(index)}
+                  aria-label="Add Chore"
+                  icon={<FaHeart />}
+                  colorScheme="pink"
+                  onClick={addChore}
                 />
               </HStack>
-            </HStack>
-          ))}
+            </Box>
+          </HStack>
+          <VStack spacing={3} width="100%">
+            {chores.map((chore, index) => (
+              <HStack key={index} width="100%" justifyContent="space-between" p={2} bg="brand.700" borderRadius="md">
+                <Checkbox isChecked={chore.completed} onChange={() => toggleComplete(index)}>
+                  {editingIndex === index ? (
+                    <Input
+                      value={editingText}
+                      onChange={(e) => setEditingText(e.target.value)}
+                      onBlur={() => saveChore(index)}
+                    />
+                  ) : (
+                    <Text as={chore.completed ? "s" : ""}>{chore.text}</Text>
+                  )}
+                </Checkbox>
+                <HStack>
+                  <IconButton
+                    aria-label="Edit Chore"
+                    icon={<FaEdit />}
+                    colorScheme="brand.800"
+                    onClick={() => editChore(index)}
+                  />
+                  <IconButton
+                    aria-label="Delete Chore"
+                    icon={<FaTrash />}
+                    colorScheme="brand.500"
+                    onClick={() => deleteChore(index)}
+                  />
+                </HStack>
+              </HStack>
+            ))}
+          </VStack>
         </VStack>
-      </VStack>
-    </Container>
+      </Container>
     </Box>
   );
 };
