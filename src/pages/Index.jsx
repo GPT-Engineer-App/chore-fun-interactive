@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Container, VStack, HStack, Input, Button, Text, IconButton, Box, Checkbox } from "@chakra-ui/react";
-import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { Container, VStack, HStack, Input, Button, Text, IconButton, Box, Checkbox } from "@chakra-ui/react"; // Import Box for background image
+import { FaPlus, FaEdit, FaTrash, FaHeart } from "react-icons/fa"; // Importing FaHeart for Hello Kitty theme
 
 const Index = () => {
   const [chores, setChores] = useState([]);
@@ -37,9 +37,10 @@ const Index = () => {
   };
 
   return (
+    <Box bgImage="url('/images/hello-kitty-background.png')" bgSize="cover" bgPosition="center" minH="100vh">
     <Container centerContent maxW="container.md" py={10}>
       <VStack spacing={4} width="100%">
-        <Text fontSize="3xl" fontWeight="bold" color="teal.500">Interactive Chore List</Text>
+        <Text fontSize="3xl" fontWeight="bold" color="brand.900">Hello Kitty Chore List</Text>
         <HStack width="100%">
           <Input
             placeholder="Enter a new chore"
@@ -48,14 +49,14 @@ const Index = () => {
           />
           <IconButton
             aria-label="Add Chore"
-            icon={<FaPlus />}
-            colorScheme="teal"
+            icon={<FaHeart />} // Changed icon to FaHeart
+            colorScheme="brand.900"
             onClick={addChore}
           />
         </HStack>
         <VStack spacing={3} width="100%">
           {chores.map((chore, index) => (
-            <HStack key={index} width="100%" justifyContent="space-between" p={2} bg="gray.100" borderRadius="md">
+            <HStack key={index} width="100%" justifyContent="space-between" p={2} bg="brand.700" borderRadius="md">
               <Checkbox isChecked={chore.completed} onChange={() => toggleComplete(index)}>
                 {editingIndex === index ? (
                   <Input
@@ -71,13 +72,13 @@ const Index = () => {
                 <IconButton
                   aria-label="Edit Chore"
                   icon={<FaEdit />}
-                  colorScheme="yellow"
+                  colorScheme="brand.800"
                   onClick={() => editChore(index)}
                 />
                 <IconButton
                   aria-label="Delete Chore"
                   icon={<FaTrash />}
-                  colorScheme="red"
+                  colorScheme="brand.500"
                   onClick={() => deleteChore(index)}
                 />
               </HStack>
@@ -86,6 +87,7 @@ const Index = () => {
         </VStack>
       </VStack>
     </Container>
+    </Box>
   );
 };
 
